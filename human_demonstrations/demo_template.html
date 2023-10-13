@@ -39,20 +39,18 @@
         <div class="col-lg-12 col-md-12">
           <div class="col-lg-12 col-md-12">
             <h2> Downloading the dataset </h2>
-            The human dataset is large (~150 gb with compressed hdf5s) and growing. We recommend using the  <a href="https://cloud.google.com/sdk/docs/quickstart#deb">google-cloud-sdk</a> to download our dataset.  We will be uploading additional demonstrations as they finish processing, up to a total of 500. Please report any issues. <br>
+            We recommend using the  <a href="https://cloud.google.com/sdk/docs/quickstart#deb">google-cloud-sdk</a> to download our dataset as this handles interrupts and resuming downloads. You can download the demos as a single 1.8 gb gzipped tar bundle <a href="https://storage.googleapis.com/gibsonchallenge/behavior_human_demos_complete_v0.4.0.tar.gz">here</a> or download with gsutil:
             <br>
-            The entire dataset processed for reinforcement learning (action, all observation modalities) can be downloaded with the following command:<br>
+            gsutil -m rsync gs://gibsonchallenge/behavior_human_demos_v0.4.0 ./behavior_human_demos_v0.4.0 <br>
             <br>
-            gsutil -m rsync gs://gibsonchallenge/behavior_human_demos_v2 ./behavior_human_demos_v2 <br>
+            We also offer a dataset which is useful for imitation learning approaches, including the human actions converted to the action space for our gym environment, as well as all observation modalities (RGB, depth, semantic segmentation, instance segmentation, task relevant object highlight) which is extremely large (300 gb). You can download this via gsutil:
             <br>
-            To download the raw hdf5s, which include eyetracking and individual pose of the VR sensors, please use the following command:<br>
+            gsutil -m rsync gs://gibsonchallenge/behavior_trajectories_v0.4.0 ./behavior_trajectories_v0.4.0 <br>
             <br>
-            gsutil -m rsync gs://gibsonchallenge/behavior_human_demos_raw ./behavior_human_demos_raw<br>
-            <hr>
           </div>
           <h2>Individual BEHAVIOR demonstrations</h2>
              {% for demo_urlstring in demo_list %}
-             <li><a href="https://storage.googleapis.com/gibsonchallenge/behavior_human_demos_v2/{{ demo_urlstring}}">{{demo_urlstring}}</a></li>
+             <li><a href="https://storage.googleapis.com/gibsonchallenge/behavior_human_demos_v0.4.0/{{ demo_urlstring}}">{{demo_urlstring}}</a></li>
              {% endfor %}
 </body>
 </html>
